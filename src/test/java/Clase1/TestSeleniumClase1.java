@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.util.List;
+import java.util.Objects;
 
 import static org.openqa.selenium.Keys.ENTER;
 
@@ -88,7 +89,7 @@ public class TestSeleniumClase1 {
 
         for (WebElement i : linksList) {
             System.out.println("\t");
-            System.out.print("Links list" + i.getText());
+            System.out.print("Links list: " + i.getText());
 
         }
         System.out.println("\t");
@@ -141,18 +142,17 @@ public class TestSeleniumClase1 {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.spotify.com");
 
-        String title = driver.getTitle();
-        if (title.equals("Escuchar es todo - Spotify.")) {
+        String title = "Escuchar es todo - Spotify.";
+        if (title.equals(driver.getTitle())) {
             System.out.println("\t");
             System.out.print(" * Test passed !!! * ");
             System.out.println("\t");
-        } else
-
+        } else {
             System.out.println("\t");
-        System.out.print(" * The title is different from the specified title :( * ");
-        System.out.println("\t");
-        System.out.print(" The specified title is: " + title + " but the real title of this page is: " + driver.getTitle());
-
+            System.out.print(" * The title is different from the specified title * :(  ");
+            System.out.println("\t");
+            System.out.print(" * The specified title is: " + title + " but the real title of this page is: " + driver.getTitle()+" *");
+        }
         System.out.println("\t");
         System.out.print(" ☆☆☆ It's Done! ☆☆☆ ");
         System.out.println("\t");
@@ -180,8 +180,8 @@ public class TestSeleniumClase1 {
         System.out.println("\t");
 
         // Setear un nuevo tamaño de pantalla 1024x768
-        Dimension dimensionn = new Dimension(1024, 768);
-        driver.manage().window().setSize(dimensionn);
+        Dimension dimension = new Dimension(1024, 768);
+        driver.manage().window().setSize(dimension);
         size = driver.manage().window().getSize();
 
         width = size.getWidth();
@@ -379,7 +379,7 @@ public class TestSeleniumClase1 {
         System.out.print(" ☆☆☆ El sitio contiene: " + cantDiv.size() + " elementos <div> ☆☆☆ ");
         System.out.println("\t");
         //Obtener y mostrar el título de la página
-        System.out.println(" ☆☆☆ La URL del sitio es: " + driver.getCurrentUrl()+" ☆☆☆ ");
+        System.out.println(" ☆☆☆ La URL del sitio es: " + driver.getCurrentUrl() + " ☆☆☆ ");
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.netflix.com/uy/");
 
         // Mostrar la cantidad de elementos de tipos link
